@@ -1,0 +1,38 @@
+server:
+    port: 9010
+    
+eureka:
+    instance:
+        hostname: localhost
+    client:
+        registerWithEureka: false
+        fetchRegistry: false
+        serviceUrl:
+            defaultZone: http://localhost:9010/eureka/
+spring:
+  application:
+    name: eureka-client
+  datasource:
+    url: jdbc:mysql://localhost:3306/yangyukun?useUnicode=true&characterEncoding=utf8
+    username: YYK
+    password: yangyukun
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+      
+zuul:
+  prefix: /api 
+  retryable: true
+ribbon:
+  ConnectTimeout: 250 
+  ReadTimeout: 2000 
+  OkToRetryOnAllOperations: true
+  MaxAutoRetriesNextServer: 1 
+  MaxAutoRetries: 1 
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 10000 
